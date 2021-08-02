@@ -16,9 +16,12 @@ const ListadoTareas = () => {
             <p>No hay tareas</p>
           </li>
         ) : (
-          tareas.map((t) => <Tarea></Tarea>)
+          tareas.map((t) => <Tarea tarea={t}></Tarea>)
         )}
       </ul>
+      <button type="button" className="btn btn-eliminar">
+        Eliminar Proyecto &times;
+      </button>
     </Fragment>
   );
 };
