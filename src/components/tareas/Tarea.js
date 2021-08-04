@@ -2,7 +2,7 @@ import React from "react";
 
 const Tarea = ({ tarea }) => {
   return (
-    <li className="tarea sombre">
+    <li className="tarea sombra">
       <p>{tarea.nombre}</p>
       <div className="estado">
         {tarea.estado ? (

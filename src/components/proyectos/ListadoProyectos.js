@@ -11,9 +11,10 @@ const ListadoProyectos = () => {
   //obtener proyectos cuando cargue el componente
   useEffect(() => {
     obtenerProyectos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (proyectos.lenght === 0) return null
+  if (proyectos.length === 0) return <p>No hay proyectos, comienza creando uno</p>
 
   return (
     <ul className="listado-proyectos">
