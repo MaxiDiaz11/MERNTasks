@@ -4,7 +4,6 @@ import proyectoContext from "../../context/proyectos/proyectoContext";
 
 const ListadoProyectos = () => {
 
-
   const proyectosContext = useContext(proyectoContext)
   const { proyectos, obtenerProyectos } = proyectosContext;
 
