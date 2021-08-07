@@ -1,7 +1,8 @@
 import {
     TAREAS_PROYECTOS,
     AGREGAR_TAREAS,
-    VALIDAR_TAREA
+    VALIDAR_TAREA,
+    ELIMINAR_TAREA
 } from "../../types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -15,7 +16,7 @@ export default (state, action) => {
         case AGREGAR_TAREAS:
             return {
                 ...state,
-                tareas: [...state.tareas, action.payload],
+                tareas: [action.payload, ...state.tareas],
                 errorTarea: false
             }
 
@@ -23,6 +24,12 @@ export default (state, action) => {
             return {
                 ...state,
                 errorTarea: true
+            }
+        case ELIMINAR_TAREA:
+            return {
+                ...state,
+                tareas: state.tareas.filter(t => t.id !== action.payload)
+
             }
         default:
             return state;

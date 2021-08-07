@@ -1,17 +1,22 @@
 import React, { useReducer } from "react";
 import tareaContext from "./tareasContext";
 import TareaReducer from "./tareasReducer";
-import { TAREAS_PROYECTOS, AGREGAR_TAREAS, VALIDAR_TAREA } from "../../types";
+import {
+  TAREAS_PROYECTOS,
+  AGREGAR_TAREAS,
+  ELIMINAR_TAREA,
+  VALIDAR_TAREA,
+} from "../../types";
 
 const TareaState = (props) => {
   const initialState = {
     tareas: [
-      { proyectoId: 2, nombre: "elegir color", estado: false },
-      { proyectoId: 1, nombre: "elegir plataforma", estado: true },
-      { proyectoId: 3, nombre: "cambiar estado", estado: true },
-      { proyectoId: 2, nombre: "elegir color", estado: false },
-      { proyectoId: 3, nombre: "cambiar estado", estado: true },
-      { proyectoId: 1, nombre: "elegir plataforma", estado: true },
+      { id: 1, proyectoId: 2, nombre: "elegir color", estado: false },
+      { id: 2, proyectoId: 1, nombre: "elegir plataforma", estado: true },
+      { id: 3, proyectoId: 3, nombre: "cambiar estado", estado: true },
+      { id: 4, proyectoId: 2, nombre: "elegir color", estado: false },
+      { id: 5, proyectoId: 3, nombre: "cambiar estado", estado: true },
+      { id: 6, proyectoId: 1, nombre: "elegir plataforma", estado: true },
     ],
     tareasProyecto: null,
     errorTarea: false,
@@ -44,6 +49,14 @@ const TareaState = (props) => {
     });
   };
 
+  //eliminar tarea
+  const eliminarTarea = (tareaId) => {
+    dispatch({
+      type: ELIMINAR_TAREA,
+      payload: tareaId,
+    });
+  };
+
   return (
     <tareaContext.Provider
       value={{
@@ -52,7 +65,8 @@ const TareaState = (props) => {
         errorTarea: state.errorTarea,
         obtenerTareas,
         agregarTarea,
-        validarTarea
+        validarTarea,
+        eliminarTarea,
       }}
     >
       {props.children}
