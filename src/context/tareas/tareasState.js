@@ -6,7 +6,12 @@ import {
   AGREGAR_TAREAS,
   ELIMINAR_TAREA,
   VALIDAR_TAREA,
+  ESTADO_TAREA,
+  TAREA_ACTUAL,
+  ACTUALIZAR_TAREA,
+  LIMPIAR_TAREA,
 } from "../../types";
+import { v4 as uuidv4 } from "uuid";
 
 const TareaState = (props) => {
   const initialState = {
@@ -20,6 +25,7 @@ const TareaState = (props) => {
     ],
     tareasProyecto: null,
     errorTarea: false,
+    tareaSeleccionada: null,
   };
 
   //crear dispatch
@@ -36,6 +42,7 @@ const TareaState = (props) => {
 
   //AGREGAR UNA TAREA AL PROYECTO SELECCIONADO
   const agregarTarea = (tarea) => {
+    tarea.id = uuidv4();
     dispatch({
       type: AGREGAR_TAREAS,
       payload: tarea,
@@ -57,16 +64,52 @@ const TareaState = (props) => {
     });
   };
 
+  //modificar estado de tarea
+  const modificarEstadoTarea = (tarea) => {
+    dispatch({
+      type: ESTADO_TAREA,
+      payload: tarea,
+    });
+  };
+
+  //EXTRAE UNA TAREA PARA EDICION
+  const guardarTareaActual = (tarea) => {
+    dispatch({
+      type: TAREA_ACTUAL,
+      payload: tarea,
+    });
+  };
+
+  //Actualizar Tarea
+  const actualizarTarea = (tarea) => {
+    dispatch({
+      type: ACTUALIZAR_TAREA,
+      payload: tarea,
+    });
+  };
+
+  //elimina la tareaSeleccionada
+  const limpiarTarea = () => {
+    dispatch({
+      type: LIMPIAR_TAREA,
+    });
+  };
+
   return (
     <tareaContext.Provider
       value={{
         tareas: state.tareas,
         tareasProyecto: state.tareasProyecto,
         errorTarea: state.errorTarea,
+        tareaSeleccionada: state.tareaSeleccionada,
         obtenerTareas,
         agregarTarea,
         validarTarea,
         eliminarTarea,
+        modificarEstadoTarea,
+        guardarTareaActual,
+        actualizarTarea,
+        limpiarTarea,
       }}
     >
       {props.children}
