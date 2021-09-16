@@ -50,7 +50,7 @@ const NuevaCuenta = () => {
         }
 
         //pasarlo al action
-        
+
     };
 
     return (
