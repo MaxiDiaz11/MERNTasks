@@ -21,7 +21,7 @@ const Login = (props) => {
     if (mensaje) {
         mostrarAlerta(mensaje.msg, mensaje.categoria)
     }
-}, [mensaje, autenticado, props.history])
+}, [mensaje, autenticado, props.history, mostrarAlerta])
 
   //state de usuario
   const [usuario, setUsuario] = useState({

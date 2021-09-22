@@ -4,11 +4,11 @@ import AutenticacionContext from "../../context/autenticacion/autenticacionConte
 const Barra = () => {
 
   const authContext = useContext(AutenticacionContext)
-  const { obtenerUsuarioAutenticado, usuario } = authContext;
+  const { obtenerUsuarioAutenticado, usuario, cerrarSesion } = authContext;
 
   useEffect(() => {
     obtenerUsuarioAutenticado()
-  }, [])
+  }, [obtenerUsuarioAutenticado])
 
   return (
     <header className="app-header">
@@ -16,7 +16,11 @@ const Barra = () => {
         Hola <span>{usuario.usuario.nombre}</span>
       </p> : null}
       <nav className="nav-principal">
-        <a href="#!">Cerrar Sesión</a>
+        <button className="btn btn-blank cerrar-sesion"
+          onClick={() => cerrarSesion()}
+        >
+          Cerrar Sesión
+        </button>
       </nav>
     </header>
   );

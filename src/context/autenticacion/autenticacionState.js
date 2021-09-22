@@ -18,7 +18,8 @@ const AutenticacionState = props => {
         token: localStorage.getItem('token'),
         autenticado: null,
         usuario: null,
-        mensaje: null
+        mensaje: null,
+        cargando: true
     }
 
     const [state, dispatch] = useReducer(autenticacionReducer, initialState);
@@ -85,6 +86,13 @@ const AutenticacionState = props => {
             })
         }
     }
+
+    const cerrarSesion = () => {
+        dispatch({
+            type: CERRAR_SESION
+        })
+    }
+
     return (
         <autenticacionContext.Provider
             value={{
@@ -92,9 +100,11 @@ const AutenticacionState = props => {
                 autenticado: state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
+                cargando: state.cargando,
                 registrarUsuario,
                 iniciarSesion,
-                obtenerUsuarioAutenticado
+                obtenerUsuarioAutenticado,
+                cerrarSesion
             }}
         >
             {props.children}
