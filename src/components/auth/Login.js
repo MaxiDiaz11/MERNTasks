@@ -23,8 +23,6 @@ const Login = (props) => {
     }
 }, [mensaje, autenticado, props.history])
 
-
-
   //state de usuario
   const [usuario, setUsuario] = useState({
     email: "",
